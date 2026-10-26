@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#4f46e5">
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js" defer></script>
+</head>
+<body>
+    <header class="topbar">
+        <div class="brand">
+            <span class="brand-icon">✓</span>
+            <span>Task Manager</span>
+        </div>
+        <span class="header-label">MY WORKSPACE</span>
+    </header>
+
+    <main class="container">
+        <section class="welcome">
+            <p class="eyebrow">YOUR PERSONAL WORKSPACE</p>
+            <h1>Get things done.</h1>
+            <p class="subtitle">
+                Organize your tasks, set priorities, and track your progress.
+            </p>
+        </section>
+
+        <section class="stats" aria-label="Task statistics">
+            <article class="stat-card">
+                <span class="stat-label">Total tasks</span>
+                <strong id="totalTasks">0</strong>
+            </article>
+
+            <article class="stat-card">
+                <span class="stat-label">Completed</span>
+                <strong id="completedTasks">0</strong>
+            </article>
+
+            <article class="stat-card">
+                <span class="stat-label">Pending</span>
+                <strong id="pendingTasks">0</strong>
+            </article>
+        </section>
+
+        <section class="panel">
+            <div class="section-heading">
+                <div>
+                    <h2 id="formHeading">Create a task</h2>
+                    <p>Add the details of something you need to do.</p>
+                </div>
+            </div>
+
+            <form id="taskForm">
+                <div class="form-group">
+                    <label for="title">Task title *</label>
+                    <input
+                        type="text"
+                        id="title"
+                        name="title"
+                        placeholder="e.g. Complete my assignment"
+                        maxlength="200"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea
+                        id="description"
+                        name="description"
+                        placeholder="Add more details (optional)"
+                        rows="3"
+                        maxlength="2000"
+                    ></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="due_date">Due date</label>
+                        <input
+                            type="date"
+                            id="due_date"
+                            name="due_date"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="priority">Priority</label>
+                        <select id="priority" name="priority">
+                            <option value="Low">Low</option>
+                            <option value="Medium" selected>Medium</option>
+                            <option value="High">High</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button
+                        type="submit"
+                        id="submitButton"
+                        class="primary-button"
+                    >
+                        + Add task
+                    </button>
+
+                    <button
+                        type="button"
+                        id="cancelEdit"
+                        class="secondary-button hidden"
+                    >
+                        Cancel edit
+                    </button>
+                </div>
+
+                <p
+                    id="formMessage"
+                    class="message"
+                    role="status"
+                    aria-live="polite"
+                ></p>
+            </form>
+        </section>
+
+        <section class="panel task-panel">
+            <div class="section-heading">
+                <div>
+                    <h2>Your tasks</h2>
+                    <p>Keep track of everything on your list.</p>
+                </div>
+
+                <button
+                    type="button"
+                    id="refreshButton"
+                    class="secondary-button"
+                >
+                    Refresh
+                </button>
+            </div>
+
+            <div class="toolbar">
+                <input
+                    type="search"
+                    id="searchInput"
+                    placeholder="Search tasks..."
+                    aria-label="Search tasks"
+                >
+
+                <select id="filterStatus" aria-label="Filter by status">
+                    <option value="all">All tasks</option>
+                    <option value="pending">Pending</option>
+                    <option value="completed">Completed</option>
+                </select>
+
+                <select id="sortTasks" aria-label="Sort tasks">
+                    <option value="newest">Newest first</option>
+                    <option value="dueDate">Due date</option>
+                    <option value="priority">Highest priority</option>
+                </select>
+            </div>
+
+            <p
+                id="listMessage"
+                class="message"
+                role="status"
+                aria-live="polite"
+            ></p>
+
+            <div id="taskList" class="task-list"></div>
+        </section>
+
+        <footer>
+            <p>
+                Task Manager · Built with HTML, CSS, JavaScript, Python and SQLite
+            </p>
+        </footer>
+    </main>
+</body>
+</html>
